@@ -144,7 +144,7 @@ public class LoginController implements CommunityConstant {
         //检查账号密码
         long expiredSeconds = rememberme ? REMEMBER_EXPIRED_SECONDS : DEFAULT_EXPIRED_SECONDS;
         Map<String, Object> map = userService.login(username, password, expiredSeconds);
-        //如果登陆成功并且登陆凭证还没过期，那么在map中有ticket.
+        //如果登陆成功那么就有登陆凭证生成，那么在map中有ticket.
         if(map.containsKey("ticket")){
             Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
             cookie.setPath(contextPath);
@@ -165,7 +165,7 @@ public class LoginController implements CommunityConstant {
         userService.logout(ticket);
         //清理认证
         SecurityContextHolder.clearContext();
-        //重定向时默认是get请求
+        //重定向默认是get请求
         return "redirect:/login";
     }
 }
