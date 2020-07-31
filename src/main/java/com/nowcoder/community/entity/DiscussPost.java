@@ -1,18 +1,43 @@
 package com.nowcoder.community.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
+
 @Component
-public class DiscussPost {
+@Document(indexName = "discusspost", type = "_doc", shards= 6 , replicas = 3)
+public class DiscussPost {//把这个实体保存到ES服务器中。建立ES中索引和这个实体类的关系
+
+    @Id //主键
     private int id;
+
+    @Field(type = FieldType.Integer)
     private int userId;
+
+    //互联网校招，analyzer:保存时的解析器。保存到ES时，尽力将这句话拆分为最多的词组。
+    //searchAnalyzer：搜索时的解析器。没必要拆那么细，拆分出尽可能少的且满足你需要的分组
+    @Field(type = FieldType.Text, analyzer = "ik_max_word" , searchAnalyzer = "ik_smart")
     private String title;
+
+    @Field(type = FieldType.Text, analyzer = "ik_max_word" , searchAnalyzer = "ik_smart")
     private String content;
+
+    @Field(type = FieldType.Integer)
     private int type;
+
+    @Field(type = FieldType.Integer)
     private int status;
+
+    @Field(type = FieldType.Date)
     private Date createTime;
+
+    @Field(type = FieldType.Integer)
     private int commentCount;
+
+    @Field(type = FieldType.Double)
     private double score;
 
     public int getId() {

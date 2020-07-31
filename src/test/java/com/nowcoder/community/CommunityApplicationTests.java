@@ -2,7 +2,7 @@ package com.nowcoder.community;
 
 import com.nowcoder.community.dao.AlphaDao;
 import com.nowcoder.community.dao.AlphaService;
-import com.nowcoder.community.dao.UserMapper;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeansException;

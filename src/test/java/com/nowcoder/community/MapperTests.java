@@ -32,7 +32,7 @@ public class MapperTests {
     @Test
     public void testSelectPosts(){
         //若传入的Id为0，那么说明不按id查询。
-        List<DiscussPost> discussPosts = discussPostMapper.selectionDiscussPosts(101, 0, 10);
+        List<DiscussPost> discussPosts = discussPostMapper.selectionDiscussPosts(101, 0, 10, 0);
         for(DiscussPost post: discussPosts){
             System.out.println(post);
         }

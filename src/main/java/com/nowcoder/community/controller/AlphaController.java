@@ -1,5 +1,6 @@
 package com.nowcoder.community.controller;
 
+import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -103,7 +104,14 @@ public class AlphaController {
         //会把map转换为Json字符串
     }
 
-    
+    //AJAX事例
+    @RequestMapping(path = "/ajax", method = RequestMethod.POST)
+    @ResponseBody //返回json字符串
+    public String testAjax(String name, int age){
+        System.out.println(name);
+        System.out.println(age);
+        return CommunityUtil.getJSONString(0, "操作成功!");
+    }
 
 
 }
