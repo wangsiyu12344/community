@@ -50,7 +50,7 @@ public class CommentController implements CommunityConstant {
                 .setEntityId(comment.getEntityId()).setData("postId", discussPostId);
         if(comment.getEntityType() == ENTITY_TYPE_POST){
             DiscussPost target = discussPostService.findDiscussPostById(comment.getEntityId());
-            event.setEntityUserId(target.getUserId());
+            event.setEntityUserId(target.getUserId());      //如果是一个帖子的回复，那么找到发帖的人，通知他
         }else if(comment.getEntityType() == ENTITY_TYPE_COMMENT){ //如果是一个评论的回复，那么找到被回复的人，通知他
             Comment target = commentService.findCommentById(comment.getEntityId());
             event.setEntityUserId(target.getUserId());
